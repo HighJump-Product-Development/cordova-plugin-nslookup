@@ -1,11 +1,12 @@
 {
   "name": "cordova-plugin-nslookup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cordova Nslookup Plugin",
   "cordova": {
     "id": "cordova-plugin-nslookup",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "repository": {
