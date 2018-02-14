@@ -23,4 +23,14 @@
       <source-file src="src/android/libs/dnsjava-2.1.7.jar" target-dir="libs" />
       <source-file src="src/android/Nslookup.java" target-dir="src/org/tiste/cordova/nslookup"/>
     </platform>
+
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="Nslookup">
+                <param name="ios-package" value="Nslookup" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/Nslookup.m" />
+        <framework src="libresolv.9.tbd" />
+    </platform>
   </plugin>
