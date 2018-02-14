@@ -41,24 +41,6 @@ NSMutableDictionary *responseObj;
 NSMutableArray *tempResultArr;
 NSMutableArray *completeResultArr;
 
-#define MY_GET16(s, cp) do { \
-register const u_char *t_cp = (const u_char *)(cp); \
-(s) = ((u_int16_t)t_cp[0] << 8) \
-| ((u_int16_t)t_cp[1]) \
-; \
-(cp) += NS_INT16SZ; \
-} while (0)
-
-#define MY_GET32(l, cp) do { \
-register const u_char *t_cp = (const u_char *)(cp); \
-(l) = ((u_int32_t)t_cp[0] << 24) \
-| ((u_int32_t)t_cp[1] << 16) \
-| ((u_int32_t)t_cp[2] << 8) \
-| ((u_int32_t)t_cp[3]) \
-; \
-(cp) += NS_INT32SZ; \
-} while (0)
-
 
 - (void) getNsLookupInfo:(CDVInvokedUrlCommand*)command
 {
@@ -81,9 +63,9 @@ register const u_char *t_cp = (const u_char *)(cp); \
             if (strcmp(currType, "TXT") == 0)
             {
                 tempType = ns_t_txt;
-                int rv = res_nquery(&res, currQuery, ns_c_in, tempType, answer, sizeof(answer));
-                dump_dns(answer, rv, "\n");
-                if(rv > -1) {
+                int responseValue = res_nquery(&res, currQuery, ns_c_in, tempType, answer, sizeof(answer));
+                dump_dns(answer, responseValue);
+                if(responseValue > -1) {
                     responseObj[@"status"] = @"success";
                 }
                 else {
@@ -111,7 +93,7 @@ register const u_char *t_cp = (const u_char *)(cp); \
     }];
 }
 
-void dump_dns(const u_char *payload, size_t paylen, const char *endline) {
+void dump_dns(const u_char *payload, size_t paylen) {
     completeResult = [[NSMutableDictionary alloc] init];
     responseObj = [[NSMutableDictionary alloc] init];
     tempResultArr = [[NSMutableArray alloc] init];
@@ -120,10 +102,10 @@ void dump_dns(const u_char *payload, size_t paylen, const char *endline) {
     if (ns_initparse(payload, (int) paylen, &msg) < 0) {
         return;
     }
-    dump_dns_sect(&msg, ns_s_an, endline);
+    dump_dns_sect(&msg, ns_s_an);
 }
 
-static void dump_dns_sect(ns_msg *msg, ns_sect sect, const char *endline) {
+static void dump_dns_sect(ns_msg *msg, ns_sect sect) {
     int rrnum, rrmax;
     ns_rr rr;
     rrmax = ns_msg_count(*msg, sect);
