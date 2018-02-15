@@ -25,4 +25,8 @@ Nslookup.prototype.nslookup = function (query, success, err) {
   exec(successCallback, errorCallback, "Nslookup", "getNsLookupInfo", query);
 };
 
+Nslookup.prototype.version = function() {
+	return "0.1.1";
+}
+
 module.exports = Nslookup;
