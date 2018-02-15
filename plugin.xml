@@ -20,7 +20,7 @@
           <param name="android-package" value="org.tiste.cordova.nslookup.Nslookup"/>
         </feature>
       </config-file>
-      <source-file src="src/android/libs/dnsjava-2.1.7.jar" target-dir="libs" />
+      <source-file src="src/android/libs/dnsjava-2.1.8.jar" target-dir="libs" />
       <source-file src="src/android/Nslookup.java" target-dir="src/org/tiste/cordova/nslookup"/>
     </platform>
 

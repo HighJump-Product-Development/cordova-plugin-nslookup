@@ -9,6 +9,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
 
 import java.net.InetAddress;
+import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,6 +88,9 @@ public class Nslookup extends CordovaPlugin {
         JSONArray recordArray = new JSONArray();
         if (type.equals("A")) {
           records = new Lookup(query, Type.A).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             ARecord rec = (ARecord) records[i];
@@ -95,6 +99,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("AAAA")) {
           records = new Lookup(query, Type.AAAA).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             AAAARecord rec = (AAAARecord) records[i];
@@ -103,6 +110,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("CNAME")) {
           records = new Lookup(query, Type.CNAME).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             CNAMERecord rec = (CNAMERecord) records[i];
@@ -112,6 +122,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("MX")) {
           records = new Lookup(query, Type.MX).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             MXRecord rec = (MXRecord) records[i];
@@ -121,6 +134,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("NS")) {
           records = new Lookup(query, Type.NS).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             NSRecord rec = (NSRecord) records[i];
@@ -129,6 +145,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("PTR")) {
           records = new Lookup(query, Type.PTR).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             PTRRecord rec = (PTRRecord) records[i];
@@ -137,6 +156,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("SOA")) {
           records = new Lookup(query, Type.SOA).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             SOARecord rec = (SOARecord) records[i];
@@ -151,6 +173,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("SPF")) {
           records = new Lookup(query, Type.SPF).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             SPFRecord rec = (SPFRecord) records[i];
@@ -159,6 +184,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("SRV")) {
           records = new Lookup(query, Type.SRV).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             SRVRecord rec = (SRVRecord) records[i];
@@ -170,6 +198,9 @@ public class Nslookup extends CordovaPlugin {
           }
         } else if (type.equals("TXT")) {
           records = new Lookup(query, Type.TXT).run();
+          if (records == null) {
+            throw new Exception("Failed to get records.");
+          }
           for (int i = 0; i < records.length; i++) {
             JSONObject obj = new JSONObject();
             TXTRecord rec = (TXTRecord) records[i];
