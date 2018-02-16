@@ -22,9 +22,9 @@
 #import <Cordova/CDV.h>
 #include <resolv.h>
 
-void dump_dns(const u_char *payload, size_t paylen, const char *endline) ;
+void dump_dns(const u_char *payload, size_t paylen) ;
 static void dump_dns_rr(ns_msg *msg, ns_rr *rr, ns_sect sect);
-static void dump_dns_sect(ns_msg *msg, ns_sect sect, const char *endline);
+static void dump_dns_sect(ns_msg *msg, ns_sect sect);
 
 @interface Nslookup : CDVPlugin {
 
